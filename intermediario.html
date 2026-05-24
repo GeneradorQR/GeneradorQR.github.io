@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>QR funcionando correctamente</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
+
+    body{
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:
+      linear-gradient(135deg,#0f172a,#111827,#1e293b);
+      padding:20px;
+      color:white;
+    }
+
+    .container{
+      width:100%;
+      max-width:500px;
+      background:rgba(255,255,255,0.06);
+      backdrop-filter:blur(18px);
+      border-radius:24px;
+      padding:35px;
+      text-align:center;
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:0 15px 40px rgba(0,0,0,0.4);
+    }
+
+    .icon{
+      width:90px;
+      height:90px;
+      margin:auto;
+      margin-bottom:20px;
+      border-radius:50%;
+      background:linear-gradient(135deg,#22c55e,#16a34a);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:42px;
+      box-shadow:0 10px 25px rgba(34,197,94,0.4);
+    }
+
+    h1{
+      font-size:2rem;
+      margin-bottom:15px;
+      color:#4ade80;
+    }
+
+    p{
+      color:#cbd5e1;
+      line-height:1.6;
+      margin-bottom:30px;
+    }
+
+    .preview{
+      background:#0f172a;
+      border-radius:16px;
+      padding:18px;
+      margin-bottom:25px;
+      text-align:left;
+      word-break:break-all;
+      border:1px solid rgba(255,255,255,0.05);
+    }
+
+    .preview span{
+      display:block;
+      color:#94a3b8;
+      font-size:0.9rem;
+      margin-bottom:8px;
+    }
+
+    .preview strong{
+      color:white;
+      font-size:0.95rem;
+    }
+
+    .open-btn{
+      display:inline-block;
+      width:100%;
+      padding:17px;
+      border-radius:18px;
+      background:linear-gradient(90deg,#3b82f6,#06b6d4);
+      color:white;
+      text-decoration:none;
+      font-size:1rem;
+      font-weight:bold;
+      transition:0.3s;
+      box-shadow:0 10px 25px rgba(6,182,212,0.35);
+    }
+
+    .open-btn:hover{
+      transform:translateY(-2px);
+    }
+
+    .ad-box{
+      margin-top:30px;
+      background:#1e293b;
+      border-radius:18px;
+      padding:25px;
+      color:#94a3b8;
+      border:1px dashed rgba(255,255,255,0.15);
+    }
+
+    .ad-box h3{
+      margin-bottom:10px;
+      color:white;
+    }
+
+    .countdown{
+      margin-top:18px;
+      color:#38bdf8;
+      font-weight:bold;
+    }
+
+    @media(max-width:600px){
+
+      .container{
+        padding:25px;
+      }
+
+      h1{
+        font-size:1.7rem;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="icon">
+      ✓
+    </div>
+
+    <h1>QR funcionando correctamente</h1>
+
+    <p>
+      El código QR fue verificado exitosamente.
+      Presiona el botón para continuar.
+    </p>
+
+    <div class="preview">
+      <span>Destino del QR:</span>
+      <strong id="linkPreview">
+        Cargando...
+      </strong>
+    </div>
+
+    <a href="#" class="open-btn" id="openBtn">
+      Abrir QR
+    </a>
+
+    <div class="countdown" id="countdown">
+      Espera 3 segundos...
+    </div>
+
+    <div class="ad-box">
+
+      <h3>Espacio para anuncios</h3>
+
+      <p>
+       
+        <br><br>
+        <br>
+       <br>
+       <br>
+       <br>
+      
+      </p>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    const params = new URLSearchParams(window.location.search);
+
+    const destino = params.get("destino");
+
+    const openBtn = document.getElementById("openBtn");
+
+    const preview = document.getElementById("linkPreview");
+
+    const countdown = document.getElementById("countdown");
+
+    if(destino){
+
+      preview.textContent = destino;
+
+      openBtn.href = destino;
+
+    } else {
+
+      preview.textContent = "Link no encontrado";
+
+      openBtn.style.display = "none";
+
+    }
+
+    // Cuenta regresiva
+
+    let tiempo = 3;
+
+    openBtn.style.pointerEvents = "none";
+
+    openBtn.style.opacity = "0.6";
+
+    const intervalo = setInterval(() => {
+
+      tiempo--;
+
+      countdown.textContent =
+      "Espera " + tiempo + " segundos...";
+
+      if(tiempo <= 0){
+
+        clearInterval(intervalo);
+
+        countdown.textContent =
+        "Ya puedes abrir el QR";
+
+        openBtn.style.pointerEvents = "auto";
+
+        openBtn.style.opacity = "1";
+
+      }
+
+    },1000);
+
+  </script>
+
+</body>
+</html>
