@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
- 
- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6846264932601083"
-     crossorigin="anonymous"></script> 
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6846264932601083"
+     crossorigin="anonymous"></script>
   
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,13 +21,17 @@
 
     body{
       min-height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
       background:
       linear-gradient(135deg,#0f172a,#111827,#1e293b);
       padding:20px;
       color:white;
+    }
+
+    .wrapper{
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
     }
 
     .container{
@@ -128,9 +132,52 @@
       font-weight:bold;
     }
 
+    .info-section{
+      width:100%;
+      max-width:900px;
+      margin-top:40px;
+      background:rgba(255,255,255,0.06);
+      backdrop-filter:blur(18px);
+      border-radius:24px;
+      padding:35px;
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:0 15px 40px rgba(0,0,0,0.4);
+    }
+
+    .info-section h2{
+      color:#38bdf8;
+      margin-bottom:15px;
+      margin-top:30px;
+    }
+
+    .info-section h2:first-child{
+      margin-top:0;
+    }
+
+    .info-section p{
+      margin-bottom:20px;
+      color:#d1d5db;
+      line-height:1.8;
+    }
+
+    .info-section ul{
+      margin-left:20px;
+      margin-bottom:25px;
+    }
+
+    .info-section li{
+      margin-bottom:10px;
+      color:#cbd5e1;
+      line-height:1.7;
+    }
+
     @media(max-width:600px){
 
       .container{
+        padding:25px;
+      }
+
+      .info-section{
         padding:25px;
       }
 
@@ -144,6 +191,8 @@
 </head>
 
 <body>
+
+<div class="wrapper">
 
   <div class="container">
 
@@ -181,9 +230,9 @@
        
         <br><br>
         <br>
-       <br>
-       <br>
-       <br>
+        <br>
+        <br>
+        <br>
       
       </p>
 
@@ -191,63 +240,129 @@
 
   </div>
 
-  <script>
+  <div class="info-section">
 
-    const params = new URLSearchParams(window.location.search);
+    <h2>¿Qué es un código QR?</h2>
 
-    const destino = params.get("destino");
+    <p>
+      Un código QR es un tipo de código digital que permite almacenar información
+      como enlaces, textos, ubicaciones o contactos. QR significa “Quick Response”
+      o respuesta rápida.
+    </p>
 
-    const openBtn = document.getElementById("openBtn");
+    <p>
+      Los códigos QR son utilizados en millones de sitios web, negocios y aplicaciones
+      porque permiten acceder rápidamente a contenido digital usando solamente la cámara
+      del teléfono.
+    </p>
 
-    const preview = document.getElementById("linkPreview");
+    <h2>¿Cómo funciona un QR?</h2>
 
-    const countdown = document.getElementById("countdown");
+    <p>
+      Cuando una persona escanea un código QR, el dispositivo interpreta automáticamente
+      la información almacenada y abre el contenido correspondiente de manera inmediata.
+    </p>
 
-    if(destino){
+    <p>
+      Esto evita tener que escribir manualmente enlaces largos y facilita el acceso rápido
+      a páginas web, redes sociales, formularios y contenido digital.
+    </p>
 
-      preview.textContent = destino;
+    <h2>Ventajas de utilizar códigos QR</h2>
 
-      openBtn.href = destino;
+    <ul>
+      <li>Acceso rápido a sitios web y plataformas.</li>
+      <li>Compatibilidad con la mayoría de teléfonos modernos.</li>
+      <li>Mayor comodidad para los usuarios.</li>
+      <li>Ideal para marketing, negocios y redes sociales.</li>
+      <li>Permite compartir información en segundos.</li>
+    </ul>
 
-    } else {
+    <h2>¿Por qué los QR son mejores que escribir enlaces?</h2>
 
-      preview.textContent = "Link no encontrado";
+    <p>
+      Los enlaces tradicionales pueden ser difíciles de recordar o escribir correctamente.
+      Los códigos QR permiten abrir páginas web instantáneamente con un simple escaneo.
+    </p>
 
-      openBtn.style.display = "none";
+    <p>
+      Además, ofrecen una experiencia más rápida y moderna para los usuarios, especialmente
+      desde dispositivos móviles.
+    </p>
+
+    <h2>Uso actual de los códigos QR</h2>
+
+    <p>
+      Actualmente los QR se utilizan para pagos digitales, menús de restaurantes,
+      promociones, redes WiFi, entradas electrónicas y acceso rápido a información online.
+    </p>
+
+    <p>
+      Gracias a su facilidad de uso y velocidad, los códigos QR continúan creciendo como
+      una de las herramientas digitales más utilizadas en internet.
+    </p>
+
+  </div>
+
+</div>
+
+<script>
+
+  const params = new URLSearchParams(window.location.search);
+
+  const destino = params.get("destino");
+
+  const openBtn = document.getElementById("openBtn");
+
+  const preview = document.getElementById("linkPreview");
+
+  const countdown = document.getElementById("countdown");
+
+  if(destino){
+
+    preview.textContent = destino;
+
+    openBtn.href = destino;
+
+  } else {
+
+    preview.textContent = "Link no encontrado";
+
+    openBtn.style.display = "none";
+
+  }
+
+  // Cuenta regresiva
+
+  let tiempo = 3;
+
+  openBtn.style.pointerEvents = "none";
+
+  openBtn.style.opacity = "0.6";
+
+  const intervalo = setInterval(() => {
+
+    tiempo--;
+
+    countdown.textContent =
+    "Espera " + tiempo + " segundos...";
+
+    if(tiempo <= 0){
+
+      clearInterval(intervalo);
+
+      countdown.textContent =
+      "Ya puedes abrir el QR";
+
+      openBtn.style.pointerEvents = "auto";
+
+      openBtn.style.opacity = "1";
 
     }
 
-    // Cuenta regresiva
+  },1000);
 
-    let tiempo = 3;
-
-    openBtn.style.pointerEvents = "none";
-
-    openBtn.style.opacity = "0.6";
-
-    const intervalo = setInterval(() => {
-
-      tiempo--;
-
-      countdown.textContent =
-      "Espera " + tiempo + " segundos...";
-
-      if(tiempo <= 0){
-
-        clearInterval(intervalo);
-
-        countdown.textContent =
-        "Ya puedes abrir el QR";
-
-        openBtn.style.pointerEvents = "auto";
-
-        openBtn.style.opacity = "1";
-
-      }
-
-    },1000);
-
-  </script>
+</script>
 
 </body>
 </html>
